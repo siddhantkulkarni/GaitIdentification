@@ -5,7 +5,7 @@ MultiVariate Spatiotemporal Classification - Evaluation System
  2. Implement your approach in ApproachImplementation package by implementing IApproachInterface
  3. Build the project
  4. Run commandline as :
-    java -jar "<path>/MVSClassification.jar" <param1> <param2>
+    java -jar "path/MVSClassification.jar" param1 param2
     - param1 can have value: UI or NOUI
       - This decides whether or not you want to use UI
     - param2 should be the path to the configuration file you want to use
