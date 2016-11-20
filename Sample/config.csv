@@ -1,0 +1,29 @@
+Approach Class Names,
+ApproachImplementation.DummyApproach1,
+ApproachImplementation.DummyApproach2,
+ApproachImplementation.DummyApproach3,
+End Of Approaches,
+Datasetpath,C:\Users\siddh\OneDrive\Coursework\Masters Project\Dataset
+TrainingIndividuals,10
+TestingIndividuals,2
+Instances,2
+IsFeatureBasedSelected,TRUE
+IsStrideLengthSelected,TRUE
+IsGaitCycleTimeSelected,TRUE
+IsVelocitySelected,TRUE
+IsHeightSelected,TRUE
+IsStdDevSelected,TRUE
+IsEDSelectedForFeatureBased,TRUE
+IsTimeSeriesSelected,TRUE
+IsPatternBasedSelected,TRUE
+IsEDSelectedForTimeSeries,TRUE
+IsFirstNSelectedForTimeSeries,TRUE
+SlidingWinSize,20
+ItemSetSize,4
+X,10
+Y,10
+Z,10
+IsAccuracySelected,TRUE
+IsMemorySelected,TRUE
+IsTimeToTrainSelected,TRUE
+IsTimeToTestSelected,TRUE

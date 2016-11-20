@@ -88,7 +88,7 @@ public class ExecuteExperiment {
                     tempHm.put(approach.getName(), temp);
                 }
                 
-                PrintWriter pw=new PrintWriter(new File("d:/Results.csv"));
+                PrintWriter pw=new PrintWriter(new File("Results.csv"));
                 pw.write("Approaches,");
                 for(IApproachInterface approach: approaches){
                     pw.write(approach.getName()+",");
