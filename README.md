@@ -1,2 +1,2 @@
-# GaitIdentification
-Gait Identification Benchmarking and Evaluation system
+# MVSCLassification
+MultiVariate Spatiotemporal Classification - Evaluation System
