@@ -11,3 +11,5 @@ MultiVariate Spatiotemporal Classification - Evaluation System
     - param2 should be the path to the configuration file you want to use
  - Result file will be generated in the project folder with the name Result.csv
  - Check the Sample folder for sample config and results file
+ 
+ # Work on User Interface and Baseline approaches is in progress.  
