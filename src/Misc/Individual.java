@@ -18,7 +18,7 @@ public class Individual {
 
     public Individual(String folder, int fileCount) throws FileNotFoundException {
         File[] files = new File(folder).listFiles();
-        name=new File(folder).getName();
+        name = new File(folder).getName();
         for (int i = 0; i < fileCount; i++) {
             int selected = (int) Math.abs(Math.random() * files.length);
             addFramesForThisIndividual(files[selected]);
@@ -28,18 +28,30 @@ public class Individual {
     public void addFramesForThisIndividual(File selectedFile) throws FileNotFoundException {
         Scanner sc = new Scanner(selectedFile);
         int counter = 0;
+        int frameCounter=0;
         String[] temp;
-        HashMap<String,String> hm=new HashMap<String,String>();
+        HashMap<String, String> hm = new HashMap<String, String>();
         while (sc.hasNext()) {
-            temp= sc.nextLine().split(";");
-            hm.put(temp[0], temp[1]+";"+temp[2]+";"+temp[3]);
-            counter++;
-            if (counter == MainWindowAttemptOne.numberOfJoints) {
-                this.frames.add(hm);
-                counter=0;hm=new HashMap<String,String>();
+            if (counter >= MainWindowAttemptOne.numberOfJoints) {
+                if(frameCounter%ExperimentalConfiguration.frameStepRate==0)//for frame step rate
+                    this.frames.add(hm);
+                frameCounter++;
+                //System.out.println(""+frames.size());
+                counter = 0;
+                hm = new HashMap<String, String>();
             }
+            if (!ExperimentalConfiguration.selectedSeries.contains(counter)) {
+                sc.nextLine();
+                counter++;
+                continue;
+            }
+
+            temp = sc.nextLine().split(";");
+            hm.put(temp[0], temp[1] + ";" + temp[2] + ";" + temp[3]);
+            counter++;
+            //System.out.println("Counter:"+counter);
         }
         sc.close();
-        
+
     }
 }

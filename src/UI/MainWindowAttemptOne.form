@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.7" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -32,49 +32,82 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jSeparator7" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jTxtNumIndividualsTest" min="-2" pref="66" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jTxtNumIndividualsTest" min="-2" pref="66" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jTxtNumIndividualsTrain" min="-2" pref="66" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTxtNumIndividualsTrain" min="-2" pref="66" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
+                                      <Component id="jSeparator3" min="-2" pref="16" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="jTxtNumInstances" min="-2" pref="66" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel28" min="-2" pref="156" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                                              <Component id="jTxtFrameStepRate" min="-2" pref="66" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      <Component id="jLabel32" min="-2" pref="493" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane1" min="-2" pref="237" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                              <Component id="jtxtNumSeries" min="-2" pref="66" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jTxtTestingFolder" min="-2" pref="756" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTxtNumInstances" min="-2" pref="66" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jTxtTestingFolder" min="-2" pref="756" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="jSeparator6" alignment="1" min="-2" pref="506" max="-2" attributes="0"/>
                               <Component id="jSeparator4" min="-2" pref="506" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -101,14 +134,12 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jCBStrideLen" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jCBVelocity" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jCBHorizontalRange" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jCBMean" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jCBHeight" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jCBGaitCycleTime" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jCBVerticalRange" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -120,10 +151,10 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -132,14 +163,10 @@
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jTxtMinItemsetSize" min="-2" pref="64" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="jTxtMinSup" min="-2" pref="64" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -173,14 +200,13 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Component id="jSeparator6" alignment="1" min="-2" pref="506" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
                               <Component id="btnViewAccuracy" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButton2" max="32767" attributes="0"/>
+                                  <Component id="jBtnExecuteExperiment" max="32767" attributes="0"/>
                                   <Component id="btnViewMem" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -188,8 +214,6 @@
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jSeparator3" min="-2" pref="2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -251,9 +275,13 @@
                   </Group>
                   <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jSeparator7" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="458" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -272,20 +300,46 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator7" min="-2" pref="2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtNumInstances" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtNumIndividualsTrain" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTxtNumIndividualsTrain" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtNumSeries" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTxtNumIndividualsTest" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTxtFrameStepRate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane1" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <Component id="jTxtNumInstances" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtNumIndividualsTest" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jSeparator2" min="-2" pref="25" max="-2" attributes="0"/>
@@ -297,14 +351,11 @@
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jCBStrideLen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCBGaitCycleTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCBHorizontalRange" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCBVerticalRange" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jCBVelocity" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCBHeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jCBMean" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jCBStdDev" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -369,14 +420,10 @@
                                   </Group>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jTxtMinItemsetSize" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTxtMinSup" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -404,7 +451,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jSeparator6" min="-2" pref="10" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtnExecuteExperiment" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -439,7 +486,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Evaluation System for Gait based Identification Approaches"/>
+        <Property name="text" type="java.lang.String" value="MVSBench"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
@@ -449,7 +496,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="18" style="2"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Gait Dataset:"/>
+        <Property name="text" type="java.lang.String" value="Dataset Path:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -477,7 +524,7 @@
           <Font name="Calibri" size="16" style="0"/>
         </Property>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Gait Feature Based Identification"/>
+        <Property name="text" type="java.lang.String" value="Feature Based Identification"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBFeatureBasedActionPerformed"/>
@@ -509,46 +556,37 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBPatternMiningActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCBStrideLen">
+    <Component class="javax.swing.JCheckBox" name="jCBHorizontalRange">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Stride Length"/>
+        <Property name="text" type="java.lang.String" value="Horizontal Range"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBStrideLenActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBHorizontalRangeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCBGaitCycleTime">
+    <Component class="javax.swing.JCheckBox" name="jCBVerticalRange">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Gait Cycle Time"/>
+        <Property name="text" type="java.lang.String" value="Vertical Range"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBGaitCycleTimeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBVerticalRangeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCBVelocity">
+    <Component class="javax.swing.JCheckBox" name="jCBMean">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Velocity"/>
+        <Property name="text" type="java.lang.String" value="Mean Deviation of all the data points"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBVelocityActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCBHeight">
-      <Properties>
-        <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Height of Individual"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBHeightActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBMeanActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCBStdDev">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Standard Deviation of all the joints presented in data"/>
+        <Property name="text" type="java.lang.String" value="Standard Deviation of all the data points presented in data"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBStdDevActionPerformed"/>
@@ -635,22 +673,6 @@
           <Font name="Calibri" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Size of Sliding window:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel11">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="(items)"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel12">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Smallest Itemset Size:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
@@ -799,17 +821,12 @@
         <Property name="text" type="java.lang.String" value="20"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtMinItemsetSize">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="4"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel23">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Number of individuals for training:"/>
+        <Property name="text" type="java.lang.String" value="Number of objects for training:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel24">
@@ -817,7 +834,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Number of instances/individual for training:"/>
+        <Property name="text" type="java.lang.String" value="Number of instances per object for training:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtNumIndividualsTrain">
@@ -837,7 +854,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Number of individuals for testing:"/>
+        <Property name="text" type="java.lang.String" value="Number of objects for testing:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtNumIndividualsTest">
@@ -865,12 +882,12 @@
         <Property name="text" type="java.lang.String" value="File Path:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="jBtnExecuteExperiment">
       <Properties>
         <Property name="text" type="java.lang.String" value="Execute Experiment"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnExecuteExperimentActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnViewAccuracy">
@@ -912,6 +929,98 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnImportConfigurationActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel28">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Calibri" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Frame window step rate:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtFrameStepRate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="jLstSelSeries">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="15">
+                <StringItem index="0" value="Series 1"/>
+                <StringItem index="1" value="Series 2"/>
+                <StringItem index="2" value="Series 3"/>
+                <StringItem index="3" value="Series 4"/>
+                <StringItem index="4" value="Series 5"/>
+                <StringItem index="5" value="Series 6"/>
+                <StringItem index="6" value="Series 7"/>
+                <StringItem index="7" value="Series 8"/>
+                <StringItem index="8" value="Series 9"/>
+                <StringItem index="9" value="Series 10"/>
+                <StringItem index="10" value="Series 11"/>
+                <StringItem index="11" value="Series 12"/>
+                <StringItem index="12" value="Series 13"/>
+                <StringItem index="13" value="Series 14"/>
+                <StringItem index="14" value="Series 15"/>
+              </StringArray>
+            </Property>
+            <Property name="selectedIndices" type="[I" editor="org.netbeans.modules.form.editors.PrimitiveTypeArrayEditor">
+              <PropertyValue value="[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jLstSelSeriesValueChanged"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLabel31">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Calibri" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Total Number of Series:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtxtNumSeries">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="15"/>
+      </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtxtNumSeriesFocusLost"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtNumSeriesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel32">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Calibri" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="*NOTE: Please press CTRL and click on the series you want unselected"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel29">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Calibri" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="MinSupport:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTxtMinSup">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="10"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

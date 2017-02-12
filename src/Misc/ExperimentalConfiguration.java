@@ -5,6 +5,8 @@
  */
 package Misc;
 
+import ApproachImplementation.IApproachInterface;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -17,10 +19,14 @@ public class ExperimentalConfiguration {
     //Generic Configuration
      public static String pathTODataset = "";
     //Evaluation Techniques
-    public static boolean isBinaryClassification = true;
+    
     public static int numberOfInstancesPerIndividual = 2;
     public static int numberOfIndividualsForTraining = 10;
     public static int numberOfIndividualsForTesting = 2;
+    public static int totalNumberOfSeries=15;
+    public static ArrayList<Integer> selectedSeries=new ArrayList<Integer>();
+    public static ArrayList<IApproachInterface> approaches=new ArrayList<IApproachInterface>();
+    public static int frameStepRate=1;
     //Feature based
     public static boolean useStrideLength = true;
     public static boolean useGaitCycleTime = true;
@@ -47,53 +53,53 @@ public class ExperimentalConfiguration {
                     pathTODataset=(String)hm.get(key);
                     break;
                 case "TrainingIndividuals":
-                    numberOfIndividualsForTraining=Integer.parseInt((String)hm.get(key));
+                    numberOfIndividualsForTraining=Integer.parseInt(""+hm.get(key));
                     break;
                 case "TestingIndividuals":
-                    numberOfIndividualsForTesting=Integer.parseInt((String)hm.get(key));
+                    numberOfIndividualsForTesting=Integer.parseInt(""+hm.get(key));
                     break;
                 case "Instances":
-                    numberOfInstancesPerIndividual=Integer.parseInt((String)hm.get(key));
+                    numberOfInstancesPerIndividual=Integer.parseInt(""+hm.get(key));
                     break;
                 case "IsStrideLengthSelected":
-                    useStrideLength=Boolean.parseBoolean((String)hm.get(key));
+                    useStrideLength=Boolean.parseBoolean(""+hm.get(key));
                     break;
                 case "IsGaitCycleTimeSelected":
-                    useGaitCycleTime=Boolean.parseBoolean((String)hm.get(key));
+                    useGaitCycleTime=Boolean.parseBoolean(""+hm.get(key));
                     break;
                 case "IsVelocitySelected":
-                    useVelocity=Boolean.parseBoolean((String)hm.get(key));
+                    useVelocity=Boolean.parseBoolean(""+hm.get(key));
                     break;
                 case "IsHeightSelected":
-                    useHeight=Boolean.parseBoolean((String)hm.get(key));
+                    useHeight=Boolean.parseBoolean(""+hm.get(key));
                     break;
                 case "IsStdDevSelected":
-                    useStdDeviation=Boolean.parseBoolean((String)hm.get(key));
+                    useStdDeviation=Boolean.parseBoolean(""+hm.get(key));
                     break;
                 case "IsEDSelectedForFeatureBased":
-                    useEuclidFeatureBased=Boolean.parseBoolean((String)hm.get(key));
+                    useEuclidFeatureBased=Boolean.parseBoolean(""+hm.get(key));
                     break;
                 
                 case "IsEDSelectedForTimeSeries":
-                    useEuclidSimilarityBased=Boolean.parseBoolean((String)hm.get(key));
+                    useEuclidSimilarityBased=Boolean.parseBoolean(""+hm.get(key));
                     break;
                 case "IsFirstNSelectedForTimeSeries":
-                    useFirstFrames=Boolean.parseBoolean((String)hm.get(key));
+                    useFirstFrames=Boolean.parseBoolean(""+hm.get(key));
                     break;
                 case "SlidingWinSize":
-                    sizeOfWindow=Integer.parseInt((String)hm.get(key));
+                    sizeOfWindow=Integer.parseInt(""+hm.get(key));
                     break;
                 case "ItemSetSize":
-                    minItemSetSize=Integer.parseInt((String)hm.get(key));
+                    minItemSetSize=Integer.parseInt(""+hm.get(key));
                     break;
                 case "X":
-                    x=Integer.parseInt((String)hm.get(key));
+                    x=Integer.parseInt(""+hm.get(key));
                     break;
                 case "Y":
-                    y=Integer.parseInt((String)hm.get(key));
+                    y=Integer.parseInt(""+hm.get(key));
                     break;
                 case "Z":
-                    z=Integer.parseInt((String)hm.get(key));
+                    z=Integer.parseInt(""+hm.get(key));
                     break;
                     
                 

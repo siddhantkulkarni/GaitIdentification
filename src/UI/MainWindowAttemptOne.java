@@ -5,6 +5,9 @@
  */
 package UI;
 
+import ApproachImplementation.FeatureBased;
+import ApproachImplementation.FrequentPatternBased;
+import ApproachImplementation.TimeSeriesSimilarity;
 import Misc.DatasetHolder;
 import Misc.ExperimentalConfiguration;
 import Misc.ParamTypeEnum;
@@ -13,11 +16,13 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import mainpackage.ExecuteExperiment;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -69,10 +74,9 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jCBTimeSeries = new javax.swing.JCheckBox();
         jCBPatternMining = new javax.swing.JCheckBox();
-        jCBStrideLen = new javax.swing.JCheckBox();
-        jCBGaitCycleTime = new javax.swing.JCheckBox();
-        jCBVelocity = new javax.swing.JCheckBox();
-        jCBHeight = new javax.swing.JCheckBox();
+        jCBHorizontalRange = new javax.swing.JCheckBox();
+        jCBVerticalRange = new javax.swing.JCheckBox();
+        jCBMean = new javax.swing.JCheckBox();
         jCBStdDev = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         rdBtnFeatureED = new javax.swing.JRadioButton();
@@ -84,8 +88,6 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         rdBtnTimeSeriesFirstN = new javax.swing.JRadioButton();
         rdBtnTimeSeriesLastN = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -106,7 +108,6 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         jCBTimeReqTest = new javax.swing.JCheckBox();
         jbtnExportResult = new javax.swing.JButton();
         jTxtWindowSize = new javax.swing.JTextField();
-        jTxtMinItemsetSize = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jTxtNumIndividualsTrain = new javax.swing.JTextField();
@@ -118,12 +119,21 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JSeparator();
         jtxtOutputFilePath = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jBtnExecuteExperiment = new javax.swing.JButton();
         btnViewAccuracy = new javax.swing.JButton();
         btnViewTime = new javax.swing.JButton();
         btnViewMem = new javax.swing.JButton();
         jbtnExportConfiguration = new javax.swing.JButton();
         jbtnImportConfiguration = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
+        jTxtFrameStepRate = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jLstSelSeries = new javax.swing.JList<String>();
+        jLabel31 = new javax.swing.JLabel();
+        jtxtNumSeries = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jTxtMinSup = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -137,10 +147,10 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel1.setText("Evaluation System for Gait based Identification Approaches");
+        jLabel1.setText("MVSBench");
 
         jLabel2.setFont(new java.awt.Font("Calibri", 2, 18)); // NOI18N
-        jLabel2.setText("Gait Dataset:");
+        jLabel2.setText("Dataset Path:");
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setText("Select features to be included:");
@@ -149,7 +159,7 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
 
         jCBFeatureBased.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         jCBFeatureBased.setSelected(true);
-        jCBFeatureBased.setText("Gait Feature Based Identification");
+        jCBFeatureBased.setText("Feature Based Identification");
         jCBFeatureBased.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBFeatureBasedActionPerformed(evt);
@@ -174,40 +184,32 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
             }
         });
 
-        jCBStrideLen.setSelected(true);
-        jCBStrideLen.setText("Stride Length");
-        jCBStrideLen.addActionListener(new java.awt.event.ActionListener() {
+        jCBHorizontalRange.setSelected(true);
+        jCBHorizontalRange.setText("Horizontal Range");
+        jCBHorizontalRange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBStrideLenActionPerformed(evt);
+                jCBHorizontalRangeActionPerformed(evt);
             }
         });
 
-        jCBGaitCycleTime.setSelected(true);
-        jCBGaitCycleTime.setText("Gait Cycle Time");
-        jCBGaitCycleTime.addActionListener(new java.awt.event.ActionListener() {
+        jCBVerticalRange.setSelected(true);
+        jCBVerticalRange.setText("Vertical Range");
+        jCBVerticalRange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBGaitCycleTimeActionPerformed(evt);
+                jCBVerticalRangeActionPerformed(evt);
             }
         });
 
-        jCBVelocity.setSelected(true);
-        jCBVelocity.setText("Velocity");
-        jCBVelocity.addActionListener(new java.awt.event.ActionListener() {
+        jCBMean.setSelected(true);
+        jCBMean.setText("Mean Deviation of all the data points");
+        jCBMean.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBVelocityActionPerformed(evt);
-            }
-        });
-
-        jCBHeight.setSelected(true);
-        jCBHeight.setText("Height of Individual");
-        jCBHeight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBHeightActionPerformed(evt);
+                jCBMeanActionPerformed(evt);
             }
         });
 
         jCBStdDev.setSelected(true);
-        jCBStdDev.setText("Standard Deviation of all the joints presented in data");
+        jCBStdDev.setText("Standard Deviation of all the data points presented in data");
         jCBStdDev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBStdDevActionPerformed(evt);
@@ -270,12 +272,6 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel10.setText("Size of Sliding window:");
-
-        jLabel11.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel11.setText("(items)");
-
-        jLabel12.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel12.setText("Smallest Itemset Size:");
 
         jLabel13.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel13.setText("(frames)");
@@ -354,20 +350,18 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
 
         jTxtWindowSize.setText("20");
 
-        jTxtMinItemsetSize.setText("4");
-
         jLabel23.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel23.setText("Number of individuals for training:");
+        jLabel23.setText("Number of objects for training:");
 
         jLabel24.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel24.setText("Number of instances/individual for training:");
+        jLabel24.setText("Number of instances per object for training:");
 
         jTxtNumIndividualsTrain.setText("10");
 
         jTxtNumInstances.setText("2");
 
         jLabel25.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel25.setText("Number of individuals for testing:");
+        jLabel25.setText("Number of objects for testing:");
 
         jTxtNumIndividualsTest.setText("2");
 
@@ -377,10 +371,10 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel27.setText("File Path:");
 
-        jButton2.setText("Execute Experiment");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBtnExecuteExperiment.setText("Execute Experiment");
+        jBtnExecuteExperiment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBtnExecuteExperimentActionPerformed(evt);
             }
         });
 
@@ -419,44 +413,108 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
             }
         });
 
+        jLabel28.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel28.setText("Frame window step rate:");
+
+        jTxtFrameStepRate.setText("1");
+
+        jLstSelSeries.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Series 1", "Series 2", "Series 3", "Series 4", "Series 5", "Series 6", "Series 7", "Series 8", "Series 9", "Series 10", "Series 11", "Series 12", "Series 13", "Series 14", "Series 15" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jLstSelSeries.setSelectedIndices(new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14});
+        jLstSelSeries.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jLstSelSeriesValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jLstSelSeries);
+
+        jLabel31.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel31.setText("Total Number of Series:");
+
+        jtxtNumSeries.setText("15");
+        jtxtNumSeries.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtxtNumSeriesFocusLost(evt);
+            }
+        });
+        jtxtNumSeries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtNumSeriesActionPerformed(evt);
+            }
+        });
+
+        jLabel32.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel32.setText("*NOTE: Please press CTRL and click on the series you want unselected");
+
+        jLabel29.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel29.setText("MinSupport:");
+
+        jTxtMinSup.setText("10");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel26)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel25)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTxtNumIndividualsTest, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel23)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTxtNumIndividualsTrain, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel24)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTxtNumInstances, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(129, 129, 129))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTxtTestingFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel26)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel25)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTxtNumIndividualsTest, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel23)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jTxtNumIndividualsTrain, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(274, 274, 274)
+                                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel24)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jTxtNumInstances, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(113, 113, 113)
+                                                .addComponent(jTxtFrameStepRate, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel31)
+                                                .addGap(41, 41, 41)
+                                                .addComponent(jtxtNumSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTxtTestingFolder, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(10, 10, 10)
@@ -479,12 +537,11 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                                                 .addComponent(rdBtnFeatureManhattan))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jCBStrideLen)
-                                                    .addComponent(jCBVelocity))
-                                                .addGap(97, 97, 97)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jCBHeight)
-                                                    .addComponent(jCBGaitCycleTime))))))
+                                                    .addComponent(jCBHorizontalRange)
+                                                    .addComponent(jCBMean))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jCBVerticalRange)
+                                                .addGap(26, 26, 26)))))
                                 .addGroup(layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addComponent(jLabel7))
@@ -494,17 +551,14 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel10)
-                                                .addComponent(jLabel12))
+                                                .addComponent(jLabel29))
                                             .addGap(18, 18, 18)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(jTxtWindowSize, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                     .addComponent(jLabel13))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jTxtMinItemsetSize, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(jLabel11))))
+                                                .addComponent(jTxtMinSup, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel15)
                                             .addGap(18, 18, 18)
@@ -528,20 +582,17 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(jTxtGridX, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jLabel19))))))
-                                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(jLabel19)))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(btnViewAccuracy)
                                 .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBtnExecuteExperiment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnViewMem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(29, 29, 29)
                                 .addComponent(btnViewTime)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
@@ -587,10 +638,13 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                                         .addComponent(jtxtOutputFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(31, 31, 31)))
                             .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jSeparator2)
-                    .addComponent(jSeparator1)
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(458, 458, 458)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,18 +660,35 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel32))
                 .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(jTxtNumInstances, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(jTxtNumIndividualsTrain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jTxtNumIndividualsTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23)
+                            .addComponent(jTxtNumIndividualsTrain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31)
+                            .addComponent(jtxtNumSeries, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(jTxtNumIndividualsTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtFrameStepRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel24))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtNumInstances, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -629,12 +700,10 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCBStrideLen)
-                                    .addComponent(jCBGaitCycleTime))
+                                    .addComponent(jCBHorizontalRange)
+                                    .addComponent(jCBVerticalRange))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCBVelocity)
-                                    .addComponent(jCBHeight))
+                                .addComponent(jCBMean)
                                 .addGap(18, 18, 18)
                                 .addComponent(jCBStdDev)
                                 .addGap(18, 18, 18)
@@ -689,13 +758,10 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                                         .addComponent(jTxtWindowSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel13))
                                     .addComponent(jLabel10))
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel11))
-                                    .addComponent(jTxtMinItemsetSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12))
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTxtMinSup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel29))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
@@ -717,7 +783,7 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(jBtnExecuteExperiment)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -742,8 +808,8 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowStateChanged
 
-    public void timeCBClicked(){
-          // TODO add your handling code here:
+    public void timeCBClicked() {
+        // TODO add your handling code here:
         if (!jCBTimeReqTest.isSelected() && !jCBTimeReqTrain.isSelected()) {
             btnViewTime.setEnabled(false);
         } else {
@@ -751,9 +817,9 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         }
     }
     private void jCBTimeReqTrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTimeReqTrainActionPerformed
-      timeCBClicked();
+        timeCBClicked();
     }//GEN-LAST:event_jCBTimeReqTrainActionPerformed
-    public void timeTestCBClicked(){
+    public void timeTestCBClicked() {
         // TODO add your handling code here:
         if (!jCBTimeReqTest.isSelected() && !jCBTimeReqTrain.isSelected()) {
             btnViewTime.setEnabled(false);
@@ -766,7 +832,7 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBTimeReqTestActionPerformed
 
     private void btnViewAccuracyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAccuracyActionPerformed
-        /*    EvaluationParameters eval;
+        /*     EvaluationParameters eval;
         EvaluationParameters[] objs = new EvaluationParameters[3];
         objs[0] = new EvaluationParameters(50, 20, 20, 10, 40, 20, 20, "Feature based");
         objs[1] = new EvaluationParameters(40, 15, 30, 05, 10, 40, 100, "Similarity based");
@@ -800,11 +866,25 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
             return false;
         } else {
             ExperimentalConfiguration.pathTODataset = jTxtTestingFolder.getText();
+            ExperimentalConfiguration.extraParameters.put("Datasetpath", ExperimentalConfiguration.pathTODataset);
         }
         try {
             ExperimentalConfiguration.numberOfInstancesPerIndividual = Integer.parseInt(jTxtNumInstances.getText());
+            ExperimentalConfiguration.extraParameters.put("Instances", ExperimentalConfiguration.numberOfInstancesPerIndividual);
             ExperimentalConfiguration.numberOfIndividualsForTraining = Integer.parseInt(jTxtNumIndividualsTrain.getText());
+            ExperimentalConfiguration.extraParameters.put("TrainingObjects", ExperimentalConfiguration.numberOfIndividualsForTraining);
             ExperimentalConfiguration.numberOfIndividualsForTesting = Integer.parseInt(jTxtNumIndividualsTest.getText());
+            ExperimentalConfiguration.extraParameters.put("TestingObjects", ExperimentalConfiguration.numberOfIndividualsForTesting);
+            ExperimentalConfiguration.frameStepRate = Integer.parseInt(jTxtFrameStepRate.getText());
+            ExperimentalConfiguration.extraParameters.put("FrameStepRate", ExperimentalConfiguration.frameStepRate);
+            int[] selArr = jLstSelSeries.getSelectedIndices();
+            String tempSeries="";
+            for (int i : selArr) {
+                ExperimentalConfiguration.selectedSeries.add(i);
+                tempSeries+=i+"-";
+            }
+            tempSeries=tempSeries.substring(0, tempSeries.length()-1);
+            ExperimentalConfiguration.extraParameters.put("SeriesToConsider",tempSeries);
             if (ExperimentalConfiguration.numberOfIndividualsForTesting > ExperimentalConfiguration.numberOfIndividualsForTraining) {
                 UtilityClass.displaySimpleMessageBox("Number of individuals for testing must be less than for training!");
                 return false;
@@ -816,56 +896,117 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         }
 
         if (jCBFeatureBased.isSelected()) {
-            if (!jCBStrideLen.isSelected() && !jCBGaitCycleTime.isSelected() && !jCBVelocity.isSelected()
-                    && !jCBHeight.isSelected() && !jCBStdDev.isSelected()) {
+            ExperimentalConfiguration.approaches.add(new FeatureBased());
+            if (!jCBHorizontalRange.isSelected() && !jCBVerticalRange.isSelected() && !jCBMean.isSelected()
+                    && !jCBStdDev.isSelected()) {
                 UtilityClass.displaySimpleMessageBox("You must select at least one feature to be used for feature based classification!");
                 return false;
             }
+            if (jCBHorizontalRange.isSelected()) {
+                ExperimentalConfiguration.extraParameters.put("IsHorizontalRangeSelected", "TRUE");
+            } else {
+                ExperimentalConfiguration.extraParameters.put("IsHorizontalRangeSelected", "FALSE");
+            }
+            if (jCBVerticalRange.isSelected()) {
+                ExperimentalConfiguration.extraParameters.put("IsVerticalRangeSelected", "TRUE");
+            } else {
+                ExperimentalConfiguration.extraParameters.put("IsVerticalRangeSelected", "FALSE");
+            }
+            if (jCBMean.isSelected()) {
+                ExperimentalConfiguration.extraParameters.put("IsMeanSelected", "TRUE");
+            } else {
+                ExperimentalConfiguration.extraParameters.put("IsMeanSelected", "FALSE");
+            }
+            if (jCBStdDev.isSelected()) {
+                ExperimentalConfiguration.extraParameters.put("IsStdDevSelected", "TRUE");
+            } else {
+                ExperimentalConfiguration.extraParameters.put("IsStdDevSelected", "FALSE");
+            }
+
         }
         try {
             ExperimentalConfiguration.sizeOfWindow = Integer.parseInt(jTxtWindowSize.getText());
+            ExperimentalConfiguration.extraParameters.put("SlidingWinSize", ExperimentalConfiguration.sizeOfWindow);
             ExperimentalConfiguration.x = Integer.parseInt(jTxtGridX.getText());
+            ExperimentalConfiguration.extraParameters.put("X", ExperimentalConfiguration.x);
             ExperimentalConfiguration.y = Integer.parseInt(jTxtGridY.getText());
+            ExperimentalConfiguration.extraParameters.put("Y", ExperimentalConfiguration.y);
             ExperimentalConfiguration.z = Integer.parseInt(jTxtGridZ.getText());
-            ExperimentalConfiguration.minItemSetSize = Integer.parseInt(jTxtMinItemsetSize.getText());
+            ExperimentalConfiguration.extraParameters.put("Z", ExperimentalConfiguration.z);
+            
+            if (rdBtnFeatureED.isSelected()) {
+                ExperimentalConfiguration.extraParameters.put("IsEDSelectedForFeatureBased", "TRUE");
+            } else {
+                ExperimentalConfiguration.extraParameters.put("IsEDSelectedForFeatureBased", "FALSE");
+            }
+
         } catch (Exception ex) {
 
             UtilityClass.displaySimpleMessageBox("All Frequent Pattern Mining paramenters must be valid integers!");
             return false;
         }
-        //ADD APPROACH
+
+        if (jCBPatternMining.isSelected()) {
+            ExperimentalConfiguration.approaches.add(new FrequentPatternBased());
+        }
+
+        if (jCBTimeSeries.isSelected()) {
+            ExperimentalConfiguration.approaches.add(new TimeSeriesSimilarity());
+        }
+
         if (!jCBFeatureBased.isSelected() && !jCBPatternMining.isSelected() && !jCBTimeSeries.isSelected()) {
             UtilityClass.displaySimpleMessageBox("You must choose at least one approach to execute experiemnt!");
             return false;
         }
+
+        if (rdBtnTimeSeriesED.isSelected()) {
+            ExperimentalConfiguration.extraParameters.put("IsEDSelectedForTimeSeries", "TRUE");
+        } else {
+            ExperimentalConfiguration.extraParameters.put("IsEDSelectedForTimeSeries", "FALSE");
+        }
+
+        if (rdBtnTimeSeriesFirstN.isSelected()) {
+            ExperimentalConfiguration.extraParameters.put("IsFirstNSelectedForTimeSeries", "TRUE");
+        } else {
+            ExperimentalConfiguration.extraParameters.put("IsFirstNSelectedForTimeSeries", "FALSE");
+        }
+
         return true;
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBtnExecuteExperimentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExecuteExperimentActionPerformed
         // TODO add your handling code here:
         if (!validateUI()) {
             return;
         }
-        ExperimentalConfiguration.dataset = new DatasetHolder();
+        try {
+            ExecuteExperiment.executeExperiments();
+            UtilityClass.displaySimpleMessageBox("Execution Completed!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jBtnExecuteExperimentActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    public void featureBasedCBClicked() {
+    public void featureBasedCBClicked() 
+    {
         // TODO add your handling code here:
         if (!jCBFeatureBased.isSelected()) {
-            jCBStrideLen.setEnabled(false);
-            jCBGaitCycleTime.setEnabled(false);
-            jCBVelocity.setEnabled(false);
-            jCBHeight.setEnabled(false);
+            
+            jCBHorizontalRange.setEnabled(false);
+            jCBVerticalRange.setEnabled(false);
+            jCBMean.setEnabled(false);
+
             jCBStdDev.setEnabled(false);
             rdBtnFeatureED.setEnabled(false);
             rdBtnFeatureManhattan.setEnabled(false);
+            
         } else {
 
-            jCBStrideLen.setEnabled(true);
-            jCBGaitCycleTime.setEnabled(true);
-            jCBVelocity.setEnabled(true);
-            jCBHeight.setEnabled(true);
+            jCBHorizontalRange.setEnabled(true);
+            jCBVerticalRange.setEnabled(true);
+            jCBMean.setEnabled(true);
+
             jCBStdDev.setEnabled(true);
             rdBtnFeatureED.setEnabled(true);
             rdBtnFeatureManhattan.setEnabled(true);
@@ -887,8 +1028,8 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         rdBtnFeatureManhattan.setSelected(true);
     }//GEN-LAST:event_rdBtnFeatureManhattanActionPerformed
 
-    public void timeSeriesCBClicked(){
-        
+    public void timeSeriesCBClicked() {
+
         if (!jCBTimeSeries.isSelected()) {
             rdBtnTimeSeriesDTW.setEnabled(false);
             rdBtnTimeSeriesED.setEnabled(false);
@@ -906,7 +1047,7 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         timeSeriesCBClicked();
     }//GEN-LAST:event_jCBTimeSeriesActionPerformed
 
-    public void edRdbClicked(){
+    public void edRdbClicked() {
         // TODO add your handling code here:
         rdBtnTimeSeriesED.setSelected(true);
         rdBtnTimeSeriesDTW.setSelected(false);
@@ -917,8 +1058,8 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
     private void rdBtnTimeSeriesEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnTimeSeriesEDActionPerformed
         edRdbClicked();
     }//GEN-LAST:event_rdBtnTimeSeriesEDActionPerformed
-    
-    public void dtwRdbClicked(){
+
+    public void dtwRdbClicked() {
         // TODO add your handling code here:
         rdBtnTimeSeriesED.setSelected(false);
         rdBtnTimeSeriesDTW.setSelected(true);
@@ -947,19 +1088,19 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
             jTxtGridY.setEnabled(true);
             jTxtGridZ.setEnabled(true);
             jTxtWindowSize.setEnabled(true);
-            jTxtMinItemsetSize.setEnabled(true);
+            
         } else {
             jTxtGridX.setEnabled(false);
             jTxtGridY.setEnabled(false);
             jTxtGridZ.setEnabled(false);
             jTxtWindowSize.setEnabled(false);
-            jTxtMinItemsetSize.setEnabled(false);
+            
         }
     }
     private void jCBPatternMiningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBPatternMiningActionPerformed
         patternMiningCBClicked();
     }//GEN-LAST:event_jCBPatternMiningActionPerformed
-    public void memCBClicked(){
+    public void memCBClicked() {
         // TODO add your handling code here:
         if (!jCBMemReq.isSelected()) {
             btnViewMem.setEnabled(false);
@@ -971,7 +1112,7 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         memCBClicked();
     }//GEN-LAST:event_jCBMemReqActionPerformed
 
-    public void accuracyCBClicked(){
+    public void accuracyCBClicked() {
         // TODO add your handling code here:
         if (!jCBAccuracy.isSelected()) {
             btnViewAccuracy.setEnabled(false);
@@ -991,15 +1132,30 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             PrintWriter pw = new PrintWriter(new File(jtxtOutputFilePath.getText()));
+            pw.write("Approaches\n");
+            if(jCBFeatureBased.isSelected())
+                pw.write("FeatureBased\n");
+            if(jCBTimeSeries.isSelected())
+                pw.write("TimeSeriesSimilarity\n");
+            if(jCBPatternMining.isSelected())
+                pw.write("FrequentPatternBased\n");
+            
+            pw.write("End of Approaches\n");
             pw.write("Datasetpath," + jTxtTestingFolder.getText() + "\n");
-            pw.write("TrainingIndividuals," + jTxtNumIndividualsTrain.getText() + "\n");
-            pw.write("TestingIndividuals," + jTxtNumIndividualsTest.getText() + "\n");
+            pw.write("TrainingObjects," + jTxtNumIndividualsTrain.getText() + "\n");
+            pw.write("TestingObjects," + jTxtNumIndividualsTest.getText() + "\n");
             pw.write("Instances," + jTxtNumInstances.getText() + "\n");
+            pw.write("FrameStepRate,"+jTxtFrameStepRate.getText()+"\n");
+            int[] selarr=jLstSelSeries.getSelectedIndices();
+            String temp="";
+            for(int i=0;i<selarr.length-1;i++)
+                temp+=selarr[i]+"-";
+            temp+=selarr[selarr.length-1];
+            pw.write("SeriesToConsider,"+temp+"\n");
             pw.write("IsFeatureBasedSelected," + jCBFeatureBased.isSelected() + "\n");
-            pw.write("IsStrideLengthSelected," + jCBStrideLen.isSelected() + "\n");
-            pw.write("IsGaitCycleTimeSelected," + jCBGaitCycleTime.isSelected() + "\n");
-            pw.write("IsVelocitySelected," + jCBVelocity.isSelected() + "\n");
-            pw.write("IsHeightSelected," + jCBHeight.isSelected() + "\n");
+            pw.write("IsHorizontalRangeSelected," + jCBHorizontalRange.isSelected() + "\n");
+            pw.write("IsVerticalRangeSelected," + jCBVerticalRange.isSelected() + "\n");
+            pw.write("IsMeanSelected," + jCBMean.isSelected() + "\n");
             pw.write("IsStdDevSelected," + jCBStdDev.isSelected() + "\n");
             pw.write("IsEDSelectedForFeatureBased," + rdBtnFeatureED.isSelected() + "\n");
             pw.write("IsTimeSeriesSelected," + jCBTimeSeries.isSelected() + "\n");
@@ -1007,7 +1163,7 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
             pw.write("IsEDSelectedForTimeSeries," + rdBtnTimeSeriesED.isSelected() + "\n");
             pw.write("IsFirstNSelectedForTimeSeries," + rdBtnTimeSeriesFirstN.isSelected() + "\n");
             pw.write("SlidingWinSize," + jTxtWindowSize.getText() + "\n");
-            pw.write("ItemSetSize," + jTxtMinItemsetSize.getText() + "\n");
+            pw.write("MinSupport,"+jTxtMinSup.getText()+"\n");
             pw.write("X," + jTxtGridX.getText() + "\n");
             pw.write("Y," + jTxtGridY.getText() + "\n");
             pw.write("Z," + jTxtGridZ.getText() + "\n");
@@ -1028,49 +1184,60 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
             case "Datasetpath":
                 jTxtTestingFolder.setText(input[1]);
                 break;
-            case "TrainingIndividuals":
+            case "TrainingObjects":
                 jTxtNumIndividualsTrain.setText(input[1]);
                 break;
-            case "TestingIndividuals":
+            case "TestingObjects":
                 jTxtNumIndividualsTest.setText(input[1]);
+                break;
+            case "FrameStepRate":
+                jTxtFrameStepRate.setText(input[1]);
+                break;
+            case "SeriesToConsider":
+                String[] temparr=input[1].split("-");
+                int[] selind=new int[temparr.length];
+                for(int i=0;i<selind.length;i++)
+                    selind[i]=Integer.parseInt(temparr[i]);
+                jLstSelSeries.setSelectedIndices(selind);
                 break;
             case "Instances":
                 jTxtNumInstances.setText(input[1]);
                 break;
             case "IsFeatureBasedSelected":
-                if (input[1].equals("true") && !jCBFeatureBased.isSelected()) {
+                if (input[1].toLowerCase().equals("true") && !jCBFeatureBased.isSelected()) {
+                    jCBFeatureBased.setSelected(true);
                     featureBasedCBClicked();
-                }else if (input[1].equals("false") && jCBFeatureBased.isSelected()) {
+                } else if (input[1].toLowerCase().equals("false") && jCBFeatureBased.isSelected()) {
+                    jCBFeatureBased.setSelected(false);
                     featureBasedCBClicked();
-                
                 }
                 break;
             case "IsStrideLengthSelected":
-                if (input[1].equals("true")) {
-                    jCBStrideLen.setSelected(true);
+                if (input[1].toLowerCase().equals("true")) {
+                    jCBHorizontalRange.setSelected(true);
                 } else {
-                    jCBStrideLen.setSelected(false);
+                    jCBHorizontalRange.setSelected(false);
                 }
                 break;
             case "IsGaitCycleTimeSelected":
-                if (input[1].equals("true")) {
-                    jCBGaitCycleTime.setSelected(true);
+                if (input[1].toLowerCase().equals("true")) {
+                    jCBVerticalRange.setSelected(true);
                 } else {
-                    jCBGaitCycleTime.setSelected(false);
+                    jCBVerticalRange.setSelected(false);
                 }
                 break;
             case "IsVelocitySelected":
                 if (input[1].equals("true")) {
-                    jCBVelocity.setSelected(true);
+                    jCBMean.setSelected(true);
                 } else {
-                    jCBVelocity.setSelected(false);
+                    jCBMean.setSelected(false);
                 }
                 break;
             case "IsHeightSelected":
                 if (input[1].equals("true")) {
-                    jCBHeight.setSelected(true);
+
                 } else {
-                    jCBHeight.setSelected(false);
+
                 }
                 break;
             case "IsStdDevSelected":
@@ -1091,21 +1258,25 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                 break;
             case "IsTimeSeriesSelected":
                 if (input[1].equals("true") && !jCBTimeSeries.isSelected()) {
+                    jCBTimeSeries.setSelected(true);
                     timeSeriesCBClicked();
                 } else if (input[1].equals("false") && jCBTimeSeries.isSelected()) {
+                    jCBTimeSeries.setSelected(false);
                     timeSeriesCBClicked();
                 }
                 break;
             case "IsPatternBasedSelected":
                 if (input[1].equals("true") && !jCBPatternMining.isSelected()) {
+                    jCBPatternMining.setSelected(true);
                     patternMiningCBClicked();
                 } else if (input[1].equals("false") && jCBPatternMining.isSelected()) {
+                    jCBPatternMining.setSelected(false);
                     patternMiningCBClicked();
                 }
                 break;
             case "IsEDSelectedForTimeSeries":
                 if (input[1].equals("true")) {
-                   edRdbClicked();
+                    edRdbClicked();
                 } else {
                     dtwRdbClicked();
                 }
@@ -1119,12 +1290,13 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                     rdBtnTimeSeriesLastN.setSelected(true);
                 }
                 break;
+            case "MinSupport":
+                jTxtMinSup.setText(input[1]);
+                break;
             case "SlidingWinSize":
                 jTxtWindowSize.setText(input[1]);
                 break;
-            case "ItemSetSize":
-                jTxtMinItemsetSize.setText(input[1]);
-                break;
+           
             case "X":
                 jTxtGridX.setText(input[1]);
                 break;
@@ -1136,29 +1308,37 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                 break;
             case "IsAccuracySelected":
                 if (input[1].equals("true") && !jCBAccuracy.isSelected()) {
+                    jCBAccuracy.setSelected(true);
                     accuracyCBClicked();
                 } else if (input[1].equals("false") && jCBAccuracy.isSelected()) {
+                    jCBAccuracy.setSelected(false);
                     accuracyCBClicked();
                 }
                 break;
             case "IsMemorySelected":
                 if (input[1].equals("true") && !jCBMemReq.isSelected()) {
+                    jCBMemReq.setSelected(true);
                     memCBClicked();
                 } else if (input[1].equals("false") && jCBMemReq.isSelected()) {
+                    jCBMemReq.setSelected(false);
                     memCBClicked();
                 }
                 break;
             case "IsTimeToTrainSelected":
                 if (input[1].equals("true") && !jCBTimeReqTrain.isSelected()) {
+                    jCBTimeReqTrain.setSelected(true);
                     timeCBClicked();
                 } else if (input[1].equals("false") && jCBTimeReqTrain.isSelected()) {
+                    jCBTimeReqTrain.setSelected(false);
                     timeCBClicked();
                 }
                 break;
             case "IsTimeToTestSelected":
                 if (input[1].equals("true") && !jCBTimeReqTest.isSelected()) {
+                    jCBTimeReqTest.setSelected(true);
                     timeTestCBClicked();
                 } else if (input[1].equals("false") && jCBTimeReqTest.isSelected()) {
+                    jCBTimeReqTest.setSelected(false);
                     timeTestCBClicked();
                 }
                 break;
@@ -1166,15 +1346,26 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
                 break;
         }
     }
-   public void importconfig(){
+
+    public void importconfig() {
         try {
             // TODO add your handling code here:
             Scanner sc = new Scanner(new File(jtxtOutputFilePath.getText()));
+            
             while (sc.hasNext()) {
+                
                 String line = sc.nextLine();
+                if(line.equals("Approaches,")){
+                    while(!line.equals("End of Approaches,")){
+                        line=sc.nextLine();
+                        
+                    }
+                    continue;
+                }
                 String[] splitline = line.split(",");
-                    applyConfiguration(splitline);
-                    ExperimentalConfiguration.extraParameters.put(splitline[0], splitline[1]);
+                System.out.println(line);
+                applyConfiguration(splitline);
+                ExperimentalConfiguration.extraParameters.put(splitline[0], splitline[1]);
             }
             UtilityClass.displaySimpleMessageBox("Configuration successfully loaded!");
             System.out.println("Extra Parameters Saved:" + ExperimentalConfiguration.extraParameters.toString());
@@ -1184,35 +1375,62 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-   }
+    }
     private void jbtnImportConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImportConfigurationActionPerformed
-       importconfig();
+        importconfig();
     }//GEN-LAST:event_jbtnImportConfigurationActionPerformed
-
-    private void jCBStrideLenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBStrideLenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBStrideLenActionPerformed
-
-    private void jCBGaitCycleTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBGaitCycleTimeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBGaitCycleTimeActionPerformed
-
-    private void jCBVelocityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBVelocityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBVelocityActionPerformed
-
-    private void jCBHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBHeightActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCBHeightActionPerformed
 
     private void jCBStdDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBStdDevActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBStdDevActionPerformed
 
+    private void jCBMeanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMeanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBMeanActionPerformed
+
+    private void jCBVerticalRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBVerticalRangeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBVerticalRangeActionPerformed
+
+    private void jCBHorizontalRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBHorizontalRangeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBHorizontalRangeActionPerformed
+
+    private void jtxtNumSeriesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxtNumSeriesFocusLost
+        // TODO add your handling code here:
+        try {
+            ExperimentalConfiguration.totalNumberOfSeries = Integer.parseInt(jtxtNumSeries.getText());
+            String[] lstData = new String[ExperimentalConfiguration.totalNumberOfSeries];
+            int[] selindices = new int[ExperimentalConfiguration.totalNumberOfSeries];
+            for (int i = 0; i < ExperimentalConfiguration.totalNumberOfSeries; i++) {
+                lstData[i] = "Series " + (i + 1);
+                selindices[i] = i;
+            }
+            jLstSelSeries.setListData(lstData);
+            jLstSelSeries.setSelectedIndices(selindices);
+
+        } catch (Exception ex) {
+            UtilityClass.displaySimpleMessageBox("Value in Number of Series must be a Number");
+        }
+    }//GEN-LAST:event_jtxtNumSeriesFocusLost
+
+    private void jtxtNumSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtNumSeriesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtNumSeriesActionPerformed
+
+    private void jLstSelSeriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jLstSelSeriesValueChanged
+        // TODO add your handling code here:
+        int[] temparr = jLstSelSeries.getSelectedIndices();
+        for (int i = 0; i < temparr.length; i++) {
+            ExperimentalConfiguration.selectedSeries.add(temparr[i]);
+        }
+    }//GEN-LAST:event_jLstSelSeriesValueChanged
+
     /**
      * @param args the command line arguments
      */
-    public static String dir="";
+    public static String dir = "";
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1239,13 +1457,13 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 MainWindowAttemptOne m = new MainWindowAttemptOne();
                 m.setLocationRelativeTo(null);
                 m.setVisible(true);
                 m.getContentPane().setBackground(Color.white);
-                if(dir.length()!=0){
+                if (dir.length() != 0) {
                     m.jtxtOutputFilePath.setText(dir);
                     m.importconfig();
                 }
@@ -1257,23 +1475,20 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
     private javax.swing.JButton btnViewAccuracy;
     private javax.swing.JButton btnViewMem;
     private javax.swing.JButton btnViewTime;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBtnExecuteExperiment;
     private javax.swing.JCheckBox jCBAccuracy;
     private javax.swing.JCheckBox jCBFeatureBased;
-    private javax.swing.JCheckBox jCBGaitCycleTime;
-    private javax.swing.JCheckBox jCBHeight;
+    private javax.swing.JCheckBox jCBHorizontalRange;
+    private javax.swing.JCheckBox jCBMean;
     private javax.swing.JCheckBox jCBMemReq;
     private javax.swing.JCheckBox jCBPatternMining;
     private javax.swing.JCheckBox jCBStdDev;
-    private javax.swing.JCheckBox jCBStrideLen;
     private javax.swing.JCheckBox jCBTimeReqTest;
     private javax.swing.JCheckBox jCBTimeReqTrain;
     private javax.swing.JCheckBox jCBTimeSeries;
-    private javax.swing.JCheckBox jCBVelocity;
+    private javax.swing.JCheckBox jCBVerticalRange;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1290,10 +1505,16 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jLstSelSeries;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1302,10 +1523,11 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JTextField jTxtFrameStepRate;
     private javax.swing.JTextField jTxtGridX;
     private javax.swing.JTextField jTxtGridY;
     private javax.swing.JTextField jTxtGridZ;
-    private javax.swing.JTextField jTxtMinItemsetSize;
+    private javax.swing.JTextField jTxtMinSup;
     private javax.swing.JTextField jTxtNumIndividualsTest;
     private javax.swing.JTextField jTxtNumIndividualsTrain;
     private javax.swing.JTextField jTxtNumInstances;
@@ -1314,6 +1536,7 @@ public class MainWindowAttemptOne extends javax.swing.JFrame {
     private javax.swing.JButton jbtnExportConfiguration;
     private javax.swing.JButton jbtnExportResult;
     private javax.swing.JButton jbtnImportConfiguration;
+    private javax.swing.JTextField jtxtNumSeries;
     private javax.swing.JTextField jtxtOutputFilePath;
     private javax.swing.JRadioButton rdBtnFeatureED;
     private javax.swing.JRadioButton rdBtnFeatureManhattan;

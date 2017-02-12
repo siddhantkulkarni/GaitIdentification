@@ -48,4 +48,23 @@ public class UtilityClass {
     public static void displaySimpleMessageBox(String message){
         JOptionPane.showMessageDialog(null, message, "InfoBox", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public static void loadSelectedSeries(String list){
+        String[] arr=list.split("-");
+        for(String str:arr){
+            ExperimentalConfiguration.selectedSeries.add(Integer.parseInt(str));
+        }
+    }
+    
+    public static void loadExtraParameters(){
+        try{
+            ExperimentalConfiguration.numberOfIndividualsForTesting=Integer.parseInt(""+ExperimentalConfiguration.extraParameters.get("TestingObjects"));
+            ExperimentalConfiguration.numberOfIndividualsForTraining=Integer.parseInt(""+ExperimentalConfiguration.extraParameters.get("TrainingObjects"));
+            ExperimentalConfiguration.numberOfInstancesPerIndividual=Integer.parseInt(""+ExperimentalConfiguration.extraParameters.get("Instances"));
+            ExperimentalConfiguration.frameStepRate=Integer.parseInt(""+ExperimentalConfiguration.extraParameters.get("FrameStepRate"));
+            //System.out.println(""+ExperimentalConfiguration.frameStepRate);
+        }catch(Exception ex){
+            System.err.println("OOOPS!");
+        }
+    }
 }
