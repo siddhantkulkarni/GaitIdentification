@@ -1,25 +1,26 @@
-Approach Class Names,
-ApproachImplementation.DummyApproach1,
-ApproachImplementation.DummyApproach2,
-ApproachImplementation.DummyApproach3,
-End Of Approaches,
-Datasetpath,C:\Users\siddh\OneDrive\Coursework\Masters Project\Dataset
-TrainingIndividuals,10
-TestingIndividuals,2
+Approaches,
+TimeSeriesSimilarity,
+FeatureBased,
+FrequentPatternBased,
+End of Approaches,
+Datasetpath,d:\dataset
+TrainingObjects,20
+TestingObjects,10
 Instances,2
+FrameStepRate,1
+SeriesToConsider,0-1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19
 IsFeatureBasedSelected,TRUE
-IsStrideLengthSelected,TRUE
-IsGaitCycleTimeSelected,TRUE
-IsVelocitySelected,TRUE
-IsHeightSelected,TRUE
+IsHorizontalRangeSelected,TRUE
+IsVerticalRangeSelected,TRUE
+IsMeanSelected,TRUE
 IsStdDevSelected,TRUE
-IsEDSelectedForFeatureBased,TRUE
+IsEDSelectedForFeatureBased,FALSE
 IsTimeSeriesSelected,TRUE
 IsPatternBasedSelected,TRUE
 IsEDSelectedForTimeSeries,TRUE
 IsFirstNSelectedForTimeSeries,TRUE
-SlidingWinSize,20
-ItemSetSize,4
+MinSupport,100
+SlidingWinSize,5
 X,10
 Y,10
 Z,10
